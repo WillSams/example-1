@@ -1,0 +1,28 @@
+name: Build and Push to ECR
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'example-1/**'
+jobs:
+  login-build-and-push-to-ecr:
+    runs-on: ubuntu-18.04
+    steps:
+      - id: configure-credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - id: login-to-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      - id: checkout
+        uses: actions/checkout@v2
+      - id: build-and-push-to-ecr
+        run: |
+          docker-compose build
+          docker tag example-1:latest ${{ secrets.REPOSITORY_PATH }}/example-1:latest
+          docker push ${{ secrets.REPOSITORY_PATH }}/example-1:latest
+        env:
+          ECR_REGISTRY: ${{ steps.login-to-ecr.outputs.registry }}
