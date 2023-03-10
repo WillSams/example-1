@@ -3,8 +3,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'example-1/**'
 jobs:
   login-build-and-push-to-ecr:
     runs-on: ubuntu-18.04
