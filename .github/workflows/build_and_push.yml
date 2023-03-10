@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v2
       - id: build-and-push-to-ecr
         run: |
-          docker-compose build
+          docker build -t example-1:latest .
           docker tag example-1:latest ${{ secrets.REPOSITORY_PATH }}/example-1:latest
           docker push ${{ secrets.REPOSITORY_PATH }}/example-1:latest
         env:
