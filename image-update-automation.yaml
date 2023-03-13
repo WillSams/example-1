@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ImageUpdateAutomation
+metadata:
+  name: example-2
+spec:
+  check:
+    name: example-2
+    type: container
+    image:
+      name: 362671794421.dkr.ecr.us-east-2.amazonaws.com/example-2
+      registry: 362671794421.dkr.ecr.us-east-2.amazonaws.com
+      newTag: '.*'
+  update:
+    image:
+      name: 362671794421.dkr.ecr.us-east-2.amazonaws.com/example-2
+      registry: 362671794421.dkr.ecr.us-east-2.amazonaws.com
+      newTag: 'latest'
