@@ -8,5 +8,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(port, () => {
-    console.log(`Port forwarded server running at http://localhost:${port}/`);
+    console.log(`Deployment succesful. Port forwarded server running at http://localhost:${port}/`);
 });
