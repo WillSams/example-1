@@ -38,6 +38,11 @@ jobs:
         with:
           command: login 
           options: --username ${{ secrets.ARGO_USERNAME }} --password ${{ secrets.ARGO_PASSWORD }} --insecure ${{ secrets.ARGO_SERVER }}
+      - id: trigger-restart-of-deployment
+        uses: clowdhaus/argo-cd-action/@main
+        with:
+          command: app actions run example-1 restart 
+          options: --kind Deployment
       - id: trigger-sync
         uses: clowdhaus/argo-cd-action/@main
         with:
