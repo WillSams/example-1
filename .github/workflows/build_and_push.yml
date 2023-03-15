@@ -36,10 +36,10 @@ jobs:
       - id: login-to-argo-cd
         uses: clowdhaus/argo-cd-action/@main
         with:
-          command: argocd login 
+          command: login 
           options: --username ${{ secrets.ARGO_USERNAME }} --password ${{ secrets.ARGO_PASSWORD }} --insecure ${{ secrets.ARGO_SERVER }}
       - id: trigger-restart-of-deployment
         uses: clowdhaus/argo-cd-action/@main
         with:
-          command: argocd app actions run example-1 restart 
+          command: app actions run example-1 restart 
           options: --kind Deployment
